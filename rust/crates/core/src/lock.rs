@@ -185,6 +185,12 @@ pub fn release_alive() {
     ALIVE.lock().unwrap().clear();
 }
 
+/// A finished test releases only its own wiki, leaving parallel tests' liveness intact.
+#[cfg(test)]
+pub(crate) fn release_test_wiki(wiki_dir: &Path) {
+    ALIVE.lock().unwrap().remove(&wiki_dir.join(".locks"));
+}
+
 // ---------------------------------------------------------------- owners
 
 #[derive(Clone, Debug, Default)]

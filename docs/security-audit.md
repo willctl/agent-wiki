@@ -39,7 +39,7 @@ These warnings remain open. An audit exit status alone must not be reported as a
 
 ## Verification
 
-The full Rust check script passed formatting, clippy on Linux and Windows, clippy for macOS core/CLI, and 74 Linux unit tests. The macOS tray requires native macOS validation.
+The full Rust check script passed formatting, clippy on Linux and Windows, clippy for macOS core/CLI, and 74 Linux unit tests. The hosted macOS Rust job also passed native tests, behavior suites and packaging.
 
 The legacy Node behavior run passed 101 tests, skipped seven and failed one Windows Edge-profile preparation test. The failed test also failed when run alone: Edge exited successfully without creating its temporary profile. No legacy installer code was changed to hide that result.
 
@@ -47,11 +47,13 @@ The Windows Rust release build succeeded. Its full behavior run passed 111 tests
 
 An isolated browser check reproduced partial Forget failure with a locked file, confirmed that the error stays visible and the input is preserved, and verified the revised page rendering. Temporary services were stopped afterward.
 
+Native Windows execution passed 68 cross-compiled unit tests. One source-tree rule test embeds the Linux build path and was run on Linux instead. Hosted Windows testing caught three portability mistakes in new fixtures: retained test lifetime handles and an accepted socket inheriting nonblocking mode. The fixtures now release only their own wiki handle and explicitly select blocking socket reads; their native Windows rerun passed. CI uses Ubuntu 24.04, matching the Linux validation environment.
+
 The public source snapshot passed Gitleaks 8.30.1. Historical matches were synthetic secret-rejection values and a synthetic note deduplication key, not verified live credentials. Two exact test lines have documented scanner exceptions; the synthetic note key was made explicitly recognizable. No file-wide allowlist is used.
 
 All exploit reproductions and regression runs used temporary synthetic wikis and spare ports. The installed service and private wiki were not used as test targets. Native release behavior, browser verification and publication checks are recorded with the final handoff.
 
-The initial hosted CI attempt did not start because of an account billing restriction. Local results above are independent of that hosted run. The installed service was not upgraded during this audit.
+The initial private hosted CI attempt did not start because of an account billing restriction. After public publication, the source/privacy job and Node suites on Windows, Linux and macOS passed. Hosted runs are available in the repository's Actions tab. The installed service was not upgraded during this audit.
 
 ## Publication rules
 

@@ -282,6 +282,7 @@ mod tests {
         assert_eq!(requests(&wiki, None)[0]["index"], 1, "another open window can keep using its original index");
         assert_eq!(decide_request(&wiki, None, batch, 1, false).unwrap()["status"], "dismissed");
         assert_eq!(pending_count(&wiki), 0);
+        crate::lock::release_test_wiki(&wiki);
         fs::remove_dir_all(wiki).unwrap();
     }
 
@@ -306,6 +307,7 @@ mod tests {
         fs::remove_file(wiki.join("unreadable.txt")).unwrap();
         assert_eq!(decide_request(&wiki, None, batch, 0, true).unwrap()["status"], "forgotten");
         assert_eq!(pending_count(&wiki), 0);
+        crate::lock::release_test_wiki(&wiki);
         fs::remove_dir_all(wiki).unwrap();
     }
 
