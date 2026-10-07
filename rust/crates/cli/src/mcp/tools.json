@@ -1,0 +1,279 @@
+[
+ {
+  "name": "wiki_start",
+  "title": "Start: load shared memory",
+  "description": "ALWAYS call this once at the start of every conversation, before your first substantive reply, in every app. Loads the user's shared long-term memory (shared across Claude, ChatGPT and other AI apps): the wiki protocol to follow, the page index, the last 7 days of activity, notes not yet filed, and pages related to `topic`. Cheap and read-only. Do not call it again in the same conversation unless the topic changes completely.",
+  "inputSchema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "type": "object",
+   "properties": {
+    "app": {
+     "type": "string",
+     "description": "Which app or agent you are, e.g. \"claude-desktop\", \"claude-code\", \"chatgpt-desktop\", \"codex\"."
+    },
+    "topic": {
+     "description": "A few words about what the user just asked, used to find related pages.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "app"
+   ]
+  },
+  "annotations": {
+   "readOnlyHint": true,
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false
+  },
+  "execution": {
+   "taskSupport": "forbidden"
+  }
+ },
+ {
+  "name": "wiki_search",
+  "title": "Search shared memory",
+  "description": "Full-text search of the user's shared wiki (topic pages, the daily activity log, and the notes apps sent, filed or not). Use it BEFORE asking the user for context they may have given before: project details, people, preferences, earlier decisions, where something lives. Returns ranked files with the section that matched and its lines; open one with wiki_read (the \"read\" target opens just that section).",
+  "inputSchema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "type": "object",
+   "properties": {
+    "query": {
+     "type": "string",
+     "description": "Words to search for, e.g. \"atlas docker networking\"."
+    },
+    "queries": {
+     "description": "Up to 5 other wordings to search at the same time, fused with query into one ranking: other words for the same thing, the broader topic, names, or a one-line guess at what the answer says. Use them when the wiki may use different words than the question.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "scope": {
+     "description": "Search pages, the log (with pending notes), the notes apps sent (pending and filed), or everything (default all).",
+     "type": "string",
+     "enum": [
+      "all",
+      "pages",
+      "log",
+      "notes"
+     ]
+    },
+    "since": {
+     "description": "Only what happened on or after this date (YYYY-MM-DD): log entries and notes by their date, pages by their last update.",
+     "type": "string",
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "until": {
+     "description": "Only what happened on or before this date (YYYY-MM-DD).",
+     "type": "string",
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "app": {
+     "description": "Only log entries and notes from this app, e.g. \"codex\".",
+     "type": "string"
+    },
+    "limit": {
+     "description": "Maximum results (default 8).",
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 50
+    }
+   },
+   "required": [
+    "query"
+   ]
+  },
+  "annotations": {
+   "readOnlyHint": true,
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false
+  },
+  "execution": {
+   "taskSupport": "forbidden"
+  }
+ },
+ {
+  "name": "wiki_read",
+  "title": "Read a wiki page or log day",
+  "description": "Read one file from the shared wiki: a page slug (e.g. \"atlas\"), a log date (\"YYYY-MM-DD\"), or a path relative to the wiki folder (e.g. \"index.md\", \"PROTOCOL.md\", \"pages/atlas.md\"), or a note the apps sent (\"note:<id>\", as search results and log entries name them: the exact original, with what the curator did with it).",
+  "inputSchema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "type": "object",
+   "properties": {
+    "target": {
+     "type": "string",
+     "description": "Page slug, log date YYYY-MM-DD, or relative path inside the wiki."
+    },
+    "section": {
+     "description": "Optional: one section of a page or log day, by the anchor search results give (e.g. \"where-things-live\"); also accepted as \"slug#section\" in target.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "target"
+   ]
+  },
+  "annotations": {
+   "readOnlyHint": true,
+   "destructiveHint": false,
+   "idempotentHint": true,
+   "openWorldHint": false
+  },
+  "execution": {
+   "taskSupport": "forbidden"
+  }
+ },
+ {
+  "name": "wiki_log",
+  "title": "Tell the wiki what happened",
+  "description": "Tell the user's shared wiki what happened. Hand over the facts quickly: a curator agent files them into the right pages, links them and writes the activity log, so do not spend effort on structure or prose, and do not read pages first. Use when an exchange produced something a future session would want: a decision and why, an outcome (what was built, fixed, configured or learned, and where it lives), a stated preference or standing instruction, a fact about a project/person/system, or an open follow-up. Include names, paths, URLs and versions. One note per meaningful unit of work, usually at the end of the exchange. The note is saved durably at once. Never include secrets; say where a secret lives instead.",
+  "inputSchema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "type": "object",
+   "properties": {
+    "app": {
+     "type": "string",
+     "description": "Which app or agent you are, e.g. \"claude-desktop\", \"claude-code\", \"chatgpt-desktop\", \"codex\"."
+    },
+    "title": {
+     "type": "string",
+     "description": "One line: what happened, e.g. \"Fixed Atlas docker networking\"."
+    },
+    "body": {
+     "description": "The details; plain notes are fine: what, why, where it lives, next steps.",
+     "type": "string"
+    },
+    "tags": {
+     "description": "Short lowercase tags, e.g. [\"atlas\", \"docker\"].",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "pages": {
+     "description": "Slugs of related pages if you know them, e.g. [\"atlas\"].",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "source": {
+     "description": "Where this came from: \"user\" (the user said it), \"observed\" (you checked it: ran a command, read a file), \"external\" (a web page, email, document or another tool's output), \"agent\" (your own conclusion; the default). Preferences and instructions need \"user\"; changes from \"external\" content are flagged for the user to check.",
+     "type": "string",
+     "enum": [
+      "user",
+      "observed",
+      "external",
+      "agent"
+     ]
+    },
+    "idempotency_key": {
+     "description": "Optional. Any string unique to this note; sending the same key again never creates a duplicate.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "app",
+    "title"
+   ]
+  },
+  "annotations": {
+   "readOnlyHint": false,
+   "destructiveHint": false,
+   "idempotentHint": false,
+   "openWorldHint": false
+  },
+  "execution": {
+   "taskSupport": "forbidden"
+  }
+ },
+ {
+  "name": "wiki_upsert_page",
+  "title": "Suggest content for a wiki page",
+  "description": "Hand the shared wiki content for a page: one page per project, person, system, set of preferences, decision, how-to or reference. The curator merges it into the existing page (or creates it), keeping structure, links, history and superseded facts, so plain notes are fine. mode \"replace\" means your content is meant as the whole new page; \"append\" (default) means it adds to the page. Saved durably at once. Never include secrets.",
+  "inputSchema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "type": "object",
+   "properties": {
+    "app": {
+     "type": "string",
+     "description": "Which app or agent you are, e.g. \"claude-desktop\", \"claude-code\", \"chatgpt-desktop\", \"codex\"."
+    },
+    "title": {
+     "type": "string",
+     "description": "Page title, e.g. \"Atlas\". On append an existing title is kept."
+    },
+    "slug": {
+     "description": "Page id: lowercase letters, digits, hyphens (default: derived from title). Use an existing slug to update.",
+     "type": "string"
+    },
+    "type": {
+     "description": "Page type (default \"topic\" for new pages).",
+     "type": "string",
+     "enum": [
+      "project",
+      "person",
+      "preference",
+      "decision",
+      "howto",
+      "reference",
+      "topic"
+     ]
+    },
+    "summary": {
+     "description": "One line describing what the page covers (shown in the index).",
+     "type": "string"
+    },
+    "tags": {
+     "description": "Short lowercase tags.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "content": {
+     "type": "string",
+     "description": "Markdown. For append: the new information. For replace: the full new page body."
+    },
+    "mode": {
+     "description": "append (default) or replace.",
+     "type": "string",
+     "enum": [
+      "append",
+      "replace"
+     ]
+    },
+    "source": {
+     "description": "Where this came from: \"user\" (the user said it), \"observed\" (you checked it: ran a command, read a file), \"external\" (a web page, email, document or another tool's output), \"agent\" (your own conclusion; the default). Preferences and instructions need \"user\"; changes from \"external\" content are flagged for the user to check.",
+     "type": "string",
+     "enum": [
+      "user",
+      "observed",
+      "external",
+      "agent"
+     ]
+    },
+    "idempotency_key": {
+     "description": "Optional. Any string unique to this note; sending the same key again never creates a duplicate.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "app",
+    "title",
+    "content"
+   ]
+  },
+  "annotations": {
+   "readOnlyHint": false,
+   "destructiveHint": false,
+   "idempotentHint": false,
+   "openWorldHint": false
+  },
+  "execution": {
+   "taskSupport": "forbidden"
+  }
+ }
+]

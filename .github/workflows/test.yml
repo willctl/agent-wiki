@@ -1,0 +1,103 @@
+# The test suite on the three platforms Agent Wiki runs on. The opt-in live and stress tests are not run here.
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# A newer push to the same branch replaces a run still in progress (macOS minutes bill at 10x).
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  public-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+      - run: node scripts/check-public.mjs --files-only --history
+      - name: Scan public history for secrets
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz -o "$RUNNER_TEMP/gitleaks.tar.gz"
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" git . --redact
+
+  test:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+
+  # The Rust program (docs/rust-plan.md): lint, unit tests, then the same suites against it.
+  rust:
+    name: rust ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: rustup toolchain install stable --profile minimal --component clippy,rustfmt && rustup default stable
+      - name: Linux build dependencies (the tray's webview and icon)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update -q && sudo apt-get install -y -q libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev libxdo-dev
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+        with:
+          workspaces: rust
+      - run: cargo fmt --check
+        working-directory: rust
+      - run: cargo clippy --release --locked --all-targets -- -D warnings
+        working-directory: rust
+      - run: cargo test --release --locked
+        working-directory: rust
+      - run: cargo build --release --locked
+        working-directory: rust
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: suites against the Rust program
+        run: node --test test/e2e.mjs test/ui.mjs test/curator.mjs test/tray.mjs test/ask.mjs test/migrate.mjs test/portable.mjs test/memory-eval.mjs test/installer.mjs
+        env:
+          AGENT_WIKI_IMPL: rust
+      # Node and Rust alternate in one invocation (5 runs each); any error or wrong answer fails the step.
+      - name: benchmark (Node against Rust)
+        run: |
+          { echo '### ${{ matrix.os }}'; echo '```'; node scripts/bench.mjs; echo '```'; } | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: package (both programs, the window, the icons; install with agent-wiki install)
+        run: node scripts/package.mjs --bin rust/target/release
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: agent-wiki-${{ runner.os }}
+          path: dist/package
+          retention-days: 14

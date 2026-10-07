@@ -1,0 +1,28 @@
+[package]
+name = "agent-wiki"
+description = "Agent Wiki: the MCP server, the session hook and the curator (and, later, the service and installer)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "agent-wiki"
+path = "src/main.rs"
+
+[dependencies]
+aw-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+chrono.workspace = true
+toml = { version = "0.9", default-features = false, features = ["parse", "serde", "std"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Services", "Win32_System_Console", "Win32_System_Threading", "Win32_UI_Shell", "Win32_Storage_FileSystem", "Win32_System_Registry", "Win32_System_Pipes", "Win32_System_IO", "Win32_Security", "Win32_Security_Authorization"] }
+
+[build-dependencies]
+embed-resource = "3"

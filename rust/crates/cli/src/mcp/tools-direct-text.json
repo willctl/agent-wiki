@@ -1,0 +1,10 @@
+{
+ "wiki_log": {
+  "title": "Log to shared memory",
+  "description": "Append an entry to today's activity log in the user's shared wiki. Use when an exchange produced something a future session would want: a decision and why, an outcome (something built, fixed, sent, configured or learned, and where it lives), a stated preference or standing instruction, a fact about a project/person/system, or an open follow-up. One entry per meaningful unit of work, usually at the end of the exchange, written to make sense without this conversation (name the project, include paths, URLs, versions). Never include secrets; write where a secret lives instead. Also update the matching page with wiki_upsert_page when durable knowledge changed."
+ },
+ "wiki_upsert_page": {
+  "title": "Create or update a wiki page",
+  "description": "Create or update a page in the shared wiki: one page per project, person, system, set of preferences, decision, how-to or reference. Search and read the page first. mode \"append\" (default) adds a dated section; \"replace\" rewrites the whole page and keeps the old version in .history/. Keep `summary` to one line: it is what the index shows. Link related pages with [[slug]]. When facts change, say what changed. Regenerates index.md and logs the change. Never include secrets."
+ }
+}

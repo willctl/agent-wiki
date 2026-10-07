@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agent-wiki": {
+      "command": "__NODE__",
+      "args": ["__RUNTIME__/server.mjs"]
+    }
+  }
+}

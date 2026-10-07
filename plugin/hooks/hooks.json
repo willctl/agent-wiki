@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOOK_COMMAND__",
+            "timeout": 15,
+            "statusMessage": "Loading Agent Wiki"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOOK_COMMAND__ stop",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

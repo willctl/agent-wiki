@@ -1,0 +1,1292 @@
+{
+  "about": "Harder questions over eval/synthetic/wiki, written so word matching alone does not find the answer: vocabulary questions use other words for the same thing (absent: the question's key words, none of which occur in the evidence files, stems included), multi-hop answers need two or more files, temporal ones turn on dates and order, abstention ones come close to what the wiki covers without being answered by it, and routing notes must find the page they belong on. Same schema as questions.json; routing items carry a note (title, body) and the page it belongs on as evidence instead of a question.",
+  "questions": [
+    {
+      "id": "hv-01",
+      "category": "vocabulary",
+      "question": "Where am I staying in Portugal?",
+      "query": "Lisbon hotel",
+      "facts": [
+        "Hotel Alfama Patio|Alfama Patio"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ],
+      "absent": [
+        "staying",
+        "Portugal"
+      ]
+    },
+    {
+      "id": "hv-02",
+      "category": "vocabulary",
+      "question": "Which coworker is on vacation from the 6th to the 10th of October?",
+      "query": "leave 2026-10-06 2026-10-10",
+      "facts": [
+        "Dana"
+      ],
+      "evidence": [
+        "pages/dana-okafor.md"
+      ],
+      "absent": [
+        "coworker",
+        "vacation",
+        "October"
+      ]
+    },
+    {
+      "id": "hv-03",
+      "category": "vocabulary",
+      "question": "Who looks after the job that screens every purchase in the online shop for scams?",
+      "query": "fraud-scoring job Quayside checkout",
+      "facts": [
+        "Priya"
+      ],
+      "evidence": [
+        "pages/priya-shah.md"
+      ],
+      "absent": [
+        "screens",
+        "purchase",
+        "online",
+        "shop",
+        "scams"
+      ]
+    },
+    {
+      "id": "hv-04",
+      "category": "vocabulary",
+      "question": "What is the clock difference between me and the engineer in Bangalore?",
+      "query": "Bengaluru Asia/Kolkata hours ahead US/Central",
+      "facts": [
+        "10.5|10 hours 30|10:30|ten and a half"
+      ],
+      "evidence": [
+        "pages/priya-shah.md"
+      ],
+      "absent": [
+        "clock",
+        "difference",
+        "Bangalore"
+      ]
+    },
+    {
+      "id": "hv-05",
+      "category": "vocabulary",
+      "question": "What triggers the job that copies stock counts into the shop on its regular cycle?",
+      "query": "Harbor sync systemd timer",
+      "facts": [
+        "harbor-sync.timer"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ],
+      "absent": [
+        "triggers",
+        "copies",
+        "stock",
+        "counts",
+        "shop",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hv-06",
+      "category": "vocabulary",
+      "question": "Which settings file does the stock-copying service read when it starts?",
+      "query": "Harbor config harbor.toml",
+      "facts": [
+        "/etc/harbor/harbor.toml"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ],
+      "absent": [
+        "settings",
+        "stock",
+        "copying",
+        "starts"
+      ]
+    },
+    {
+      "id": "hv-07",
+      "category": "vocabulary",
+      "question": "What's planned for the records that the supplier's software refuses?",
+      "query": "Harbor dead-letter table rows ERP rejects",
+      "facts": [
+        "dead-letter"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ],
+      "absent": [
+        "planned",
+        "records",
+        "supplier",
+        "software",
+        "refuses"
+      ]
+    },
+    {
+      "id": "hv-08",
+      "category": "vocabulary",
+      "question": "How frequently are stock counts pushed to the online shop?",
+      "query": "Harbor sync every five minutes",
+      "facts": [
+        "5 minutes|five minutes"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ],
+      "absent": [
+        "frequently",
+        "stock",
+        "counts",
+        "pushed",
+        "online",
+        "shop"
+      ]
+    },
+    {
+      "id": "hv-09",
+      "category": "vocabulary",
+      "question": "At what charge level does the storage box power itself off during an outage?",
+      "query": "NAS shuts down battery UPS",
+      "facts": [
+        "20%"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ],
+      "absent": [
+        "charge",
+        "level",
+        "storage",
+        "power",
+        "outage"
+      ]
+    },
+    {
+      "id": "hv-10",
+      "category": "vocabulary",
+      "question": "How many old copies does the offsite archive keep?",
+      "query": "backups retention versions B2",
+      "facts": [
+        "30"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ],
+      "absent": [
+        "copies",
+        "offsite",
+        "archive",
+        "keep"
+      ]
+    },
+    {
+      "id": "hv-11",
+      "category": "vocabulary",
+      "question": "What model is my uninterruptible power supply?",
+      "query": "UPS APC",
+      "facts": [
+        "SMT1500"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ],
+      "absent": [
+        "uninterruptible",
+        "power",
+        "supply",
+        "model"
+      ]
+    },
+    {
+      "id": "hv-12",
+      "category": "vocabulary",
+      "question": "Which Linux distribution and release go into the Windows Subsystem for Linux on a fresh computer?",
+      "query": "WSL install Ubuntu",
+      "facts": [
+        "Ubuntu",
+        "24.04"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md"
+      ],
+      "absent": [
+        "Linux",
+        "distribution",
+        "release",
+        "subsystem",
+        "fresh",
+        "computer"
+      ]
+    },
+    {
+      "id": "hv-13",
+      "category": "vocabulary",
+      "question": "Why did I ditch the old tool for juggling JavaScript runtimes?",
+      "query": "nvm-windows fnm switched WSL",
+      "facts": [
+        "reboot|WSL|faster"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md",
+        "log/2026/2026-09-25.md"
+      ],
+      "absent": [
+        "ditch",
+        "tool",
+        "juggling",
+        "JavaScript",
+        "runtimes"
+      ]
+    },
+    {
+      "id": "hv-14",
+      "category": "vocabulary",
+      "question": "How does the stock feed sign in to the supplier's interface?",
+      "query": "Ledgerline auth OAuth client credentials",
+      "facts": [
+        "OAuth",
+        "client credentials"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ],
+      "absent": [
+        "stock",
+        "feed",
+        "sign",
+        "supplier",
+        "interface"
+      ]
+    },
+    {
+      "id": "hv-15",
+      "category": "vocabulary",
+      "question": "Is there a practice environment for the supplier's interface, and what's its address?",
+      "query": "Ledgerline sandbox",
+      "facts": [
+        "sandbox.ledgerline.example.test"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ],
+      "absent": [
+        "practice",
+        "environment",
+        "supplier",
+        "interface",
+        "address"
+      ]
+    },
+    {
+      "id": "hv-16",
+      "category": "vocabulary",
+      "question": "What username do I use on the supplier's help desk?",
+      "query": "Ledgerline support portal account",
+      "facts": [
+        "samriv-harbor"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ],
+      "absent": [
+        "username",
+        "supplier",
+        "help",
+        "desk"
+      ]
+    },
+    {
+      "id": "hv-17",
+      "category": "vocabulary",
+      "question": "Which login services are being weighed for single sign-on to the uptime page's admin area?",
+      "query": "Lighthouse SSO admin page",
+      "facts": [
+        "Authentik",
+        "Cloudflare Access"
+      ],
+      "evidence": [
+        "pages/lighthouse.md"
+      ],
+      "absent": [
+        "login",
+        "services",
+        "weighed",
+        "single",
+        "sign",
+        "uptime",
+        "area"
+      ]
+    },
+    {
+      "id": "hv-18",
+      "category": "vocabulary",
+      "question": "Which airport do I leave from for the European event?",
+      "query": "Lisbon outbound flight Chicago O'Hare ORD",
+      "facts": [
+        "O'Hare|ORD"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ],
+      "absent": [
+        "airport",
+        "leave",
+        "European",
+        "event"
+      ]
+    },
+    {
+      "id": "hv-19",
+      "category": "vocabulary",
+      "question": "How should I label the chat room for an outage?",
+      "query": "incident channel Slack",
+      "facts": [
+        "#inc-"
+      ],
+      "evidence": [
+        "pages/on-call.md"
+      ],
+      "absent": [
+        "label",
+        "chat",
+        "room",
+        "outage"
+      ]
+    },
+    {
+      "id": "hv-20",
+      "category": "vocabulary",
+      "question": "Why did we bump the database engine to the newer major release?",
+      "query": "Postgres 16 upgrade why support",
+      "facts": [
+        "November",
+        "upserts"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md"
+      ],
+      "absent": [
+        "bump",
+        "database",
+        "engine",
+        "newer",
+        "major",
+        "release"
+      ]
+    },
+    {
+      "id": "hv-21",
+      "category": "vocabulary",
+      "question": "Which card processor does the retail site use, and where do its callbacks arrive?",
+      "query": "Quayside payments Stripe webhooks",
+      "facts": [
+        "Stripe",
+        "/api/stripe/webhook"
+      ],
+      "evidence": [
+        "pages/quayside.md"
+      ],
+      "absent": [
+        "card",
+        "processor",
+        "retail",
+        "site",
+        "callbacks",
+        "arrive"
+      ]
+    },
+    {
+      "id": "hv-22",
+      "category": "vocabulary",
+      "question": "How long did pulling fifty gigabytes back from cloud storage take in the recovery exercise?",
+      "query": "restore drill 50 GB B2",
+      "facts": [
+        "3 hours 12|3 h 12"
+      ],
+      "evidence": [
+        "pages/restore-drill.md",
+        "log/2026/2026-09-30.md"
+      ],
+      "absent": [
+        "pulling",
+        "fifty",
+        "gigabytes",
+        "cloud",
+        "storage",
+        "recovery",
+        "exercise"
+      ]
+    },
+    {
+      "id": "hv-23",
+      "category": "vocabulary",
+      "question": "Why weren't the family pictures in the cloud copy?",
+      "query": "restore drill photos Hyper Backup task excluded",
+      "facts": [
+        "DSM",
+        "July"
+      ],
+      "evidence": [
+        "pages/restore-drill.md",
+        "log/2026/2026-09-30.md"
+      ],
+      "absent": [
+        "family",
+        "pictures",
+        "cloud",
+        "copy"
+      ]
+    },
+    {
+      "id": "hv-24",
+      "category": "vocabulary",
+      "question": "When did I retire the credential from my previous computer?",
+      "query": "old RSA key sam@old-laptop removed GitHub",
+      "facts": [
+        "2026-09-11|September 11|Sept 11|Sep 11"
+      ],
+      "evidence": [
+        "pages/ssh-keys.md"
+      ],
+      "absent": [
+        "retire",
+        "credential",
+        "previous",
+        "computer"
+      ]
+    },
+    {
+      "id": "hv-25",
+      "category": "vocabulary",
+      "question": "Which address range travels over the encrypted link to the workplace?",
+      "query": "VPN split tunnel",
+      "facts": [
+        "10.10.0.0/16"
+      ],
+      "evidence": [
+        "pages/vpn-setup.md"
+      ],
+      "absent": [
+        "address",
+        "range",
+        "travels",
+        "encrypted",
+        "link",
+        "workplace"
+      ]
+    },
+    {
+      "id": "hv-26",
+      "category": "vocabulary",
+      "question": "What makes a repeated charge attempt harmless on the payments side?",
+      "query": "billing API runbook invoices idempotent",
+      "facts": [
+        "idempotent",
+        "order id"
+      ],
+      "evidence": [
+        "log/2026/2026-09-16.md"
+      ],
+      "absent": [
+        "repeated",
+        "charge",
+        "attempt",
+        "harmless",
+        "payments",
+        "side"
+      ]
+    },
+    {
+      "id": "hv-27",
+      "category": "vocabulary",
+      "question": "Why did I have to change the login for the supplier's practice environment?",
+      "query": "Ledgerline sandbox client secret rotated",
+      "facts": [
+        "screen recording"
+      ],
+      "evidence": [
+        "log/2026/2026-09-26.md"
+      ],
+      "absent": [
+        "change",
+        "login",
+        "supplier",
+        "practice",
+        "environment"
+      ]
+    },
+    {
+      "id": "hv-28",
+      "category": "vocabulary",
+      "question": "Which tool did I use to get HTTPS working again on the pre-production site?",
+      "query": "Harbor staging certificate renewed",
+      "facts": [
+        "certbot"
+      ],
+      "evidence": [
+        "log/2026/2026-09-28.md"
+      ],
+      "absent": [
+        "tool",
+        "HTTPS",
+        "working",
+        "again",
+        "pre-production",
+        "site"
+      ]
+    },
+    {
+      "id": "hv-29",
+      "category": "vocabulary",
+      "question": "Why was the uptime page relocated next to the online shop?",
+      "query": "Lighthouse Fly.io next to Quayside checks region",
+      "facts": [
+        "same region"
+      ],
+      "evidence": [
+        "log/2026/2026-10-01.md"
+      ],
+      "absent": [
+        "uptime",
+        "relocated",
+        "online",
+        "shop"
+      ]
+    },
+    {
+      "id": "hm-01",
+      "category": "multi-hop",
+      "question": "If nobody answers a page, who is the first person it escalates to, and what time zone are they in?",
+      "query": "escalate unacknowledged pages Dana time zone",
+      "facts": [
+        "Dana",
+        "Pacific"
+      ],
+      "evidence": [
+        "pages/on-call.md",
+        "pages/dana-okafor.md"
+      ]
+    },
+    {
+      "id": "hm-02",
+      "category": "multi-hop",
+      "question": "While I'm in Lisbon, who holds my on-call week, and where do they normally sit in the rotation?",
+      "query": "Lisbon on-call swapped Priya rotation",
+      "facts": [
+        "Priya",
+        "Second"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md",
+        "pages/priya-shah.md",
+        "pages/on-call.md"
+      ]
+    },
+    {
+      "id": "hm-03",
+      "category": "multi-hop",
+      "question": "Judging by its title, which of my projects is my Lisbon talk about, and which ERP does that project read from?",
+      "query": "EuroData talk Syncing inventory Harbor Ledgerline",
+      "facts": [
+        "Syncing inventory without tears",
+        "Harbor",
+        "Ledgerline"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "hm-04",
+      "category": "multi-hop",
+      "question": "INC-0042 came after a batch size change: what was the batch size changed to, and how many calls a minute did the sync make after it?",
+      "query": "Harbor batch size INC-0042 calls a minute",
+      "facts": [
+        "500",
+        "150"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "log/2026/2026-09-29.md"
+      ]
+    },
+    {
+      "id": "hm-05",
+      "category": "multi-hop",
+      "question": "Before I SSH into db-01 from home, which VPN command do I run, and which key and jump host does db-01 require?",
+      "query": "wg-quick office db-01 bastion key",
+      "facts": [
+        "wg-quick up office",
+        "bastion-2026",
+        "bastion.office.lan"
+      ],
+      "evidence": [
+        "pages/vpn-setup.md",
+        "pages/ssh-keys.md"
+      ]
+    },
+    {
+      "id": "hm-06",
+      "category": "multi-hop",
+      "question": "Which storefront endpoint does Lighthouse poll, and in which Fly.io region does that storefront run?",
+      "query": "Lighthouse storefront /status Quayside Fly.io region",
+      "facts": [
+        "/status",
+        "ord"
+      ],
+      "evidence": [
+        "pages/lighthouse.md",
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "hm-07",
+      "category": "multi-hop",
+      "question": "How much data did the restore drill bring back, from which bucket, and at what time each night is that bucket written to?",
+      "query": "restore drill 50 GB bucket backups nightly",
+      "facts": [
+        "50 GB",
+        "sam-nas-backup",
+        "02:00"
+      ],
+      "evidence": [
+        "pages/restore-drill.md",
+        "pages/home-lab.md",
+        "log/2026/2026-09-30.md"
+      ]
+    },
+    {
+      "id": "hm-08",
+      "category": "multi-hop",
+      "question": "Which Node major version does my laptop setup install, and what forced Lighthouse onto that version?",
+      "query": "fnm install Node 24 Lighthouse Vite 7",
+      "facts": [
+        "24",
+        "Vite 7"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md",
+        "pages/lighthouse.md",
+        "log/2026/2026-09-19.md"
+      ]
+    },
+    {
+      "id": "hm-09",
+      "category": "multi-hop",
+      "question": "Who owns the fraud-scoring job, and which payment provider processes the checkouts it scores?",
+      "query": "fraud-scoring Quayside checkout payments Stripe",
+      "facts": [
+        "Priya",
+        "Stripe"
+      ],
+      "evidence": [
+        "pages/priya-shah.md",
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "hm-10",
+      "category": "multi-hop",
+      "question": "Who confirmed that the old Ledgerline sandbox secret was revoked, and what is her email address?",
+      "query": "Ledgerline sandbox secret revoked Marta Ruiz",
+      "facts": [
+        "Marta Ruiz",
+        "marta.ruiz@ledgerline.example.test"
+      ],
+      "evidence": [
+        "log/2026/2026-09-26.md",
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "hm-11",
+      "category": "multi-hop",
+      "question": "After the Postgres 16 upgrade, at what time did the Harbor sync start again, and what would the rollback have been?",
+      "query": "Postgres 16 upgrade Harbor sync resumed rollback snapshot",
+      "facts": [
+        "07:41",
+        "snapshot"
+      ],
+      "evidence": [
+        "log/2026/2026-09-27.md",
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "hm-12",
+      "category": "multi-hop",
+      "question": "What model is the NAS whose bay 3 disk was swapped, and which disk went in?",
+      "query": "NAS Synology bay 3 disk replaced",
+      "facts": [
+        "DS923+",
+        "WD Red Plus"
+      ],
+      "evidence": [
+        "pages/home-lab.md",
+        "log/2026/2026-09-21.md"
+      ]
+    },
+    {
+      "id": "hm-13",
+      "category": "multi-hop",
+      "question": "How far below Ledgerline's rate limit does Harbor's own cap keep it?",
+      "query": "Ledgerline rate limit requests per minute Harbor 100 a minute",
+      "facts": [
+        "120",
+        "100"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md",
+        "pages/harbor.md",
+        "log/2026/2026-09-29.md"
+      ]
+    },
+    {
+      "id": "hm-14",
+      "category": "multi-hop",
+      "question": "Where are Harbor's own secrets kept, and which item holds the production Ledgerline credentials it uses?",
+      "query": "Harbor secrets 1Password vault Ledgerline production credentials",
+      "facts": [
+        "1Password",
+        "Ledgerline API"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "hm-15",
+      "category": "multi-hop",
+      "question": "Who owns Harbor, and in which Slack channel does the owner of the billing API it calls want updates?",
+      "query": "Harbor owns billing API Dana Slack",
+      "facts": [
+        "Sam",
+        "#payments"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "pages/dana-okafor.md"
+      ]
+    },
+    {
+      "id": "ht-01",
+      "category": "temporal",
+      "question": "What happened the day after the backup restore drill?",
+      "query": "restore drill 2026-10-01",
+      "facts": [
+        "Lighthouse",
+        "Fly.io"
+      ],
+      "evidence": [
+        "log/2026/2026-10-01.md",
+        "log/2026/2026-09-30.md",
+        "pages/restore-drill.md"
+      ]
+    },
+    {
+      "id": "ht-02",
+      "category": "temporal",
+      "question": "What did I do the day before the Postgres 16 upgrade?",
+      "query": "Postgres 16 upgrade 2026-09-26",
+      "facts": [
+        "Ledgerline",
+        "sandbox"
+      ],
+      "evidence": [
+        "log/2026/2026-09-26.md",
+        "log/2026/2026-09-27.md",
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "ht-03",
+      "category": "temporal",
+      "question": "Which moved to Fly.io first, the storefront or Lighthouse?",
+      "query": "Quayside Lighthouse moved Fly.io",
+      "facts": [
+        "2026-09-24",
+        "2026-10-01"
+      ],
+      "evidence": [
+        "log/2026/2026-09-24.md",
+        "log/2026/2026-10-01.md",
+        "pages/quayside.md",
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "ht-04",
+      "category": "temporal",
+      "question": "Which Ledgerline API version did Harbor call before 2026-10-02?",
+      "query": "Harbor Ledgerline API previously v2",
+      "facts": [
+        "v2"
+      ],
+      "evidence": [
+        "log/2026/2026-10-02.md",
+        "pages/ledgerline-erp.md",
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ht-05",
+      "category": "temporal",
+      "question": "What was the last thing logged before the Lisbon trip was booked?",
+      "query": "2026-10-02 Harbor Ledgerline v3",
+      "facts": [
+        "Ledgerline",
+        "v3"
+      ],
+      "evidence": [
+        "log/2026/2026-10-02.md",
+        "log/2026/2026-10-03.md"
+      ]
+    },
+    {
+      "id": "ht-06",
+      "category": "temporal",
+      "question": "What went wrong with Harbor staging on the same day as the Postgres upgrade?",
+      "query": "Harbor staging certificate expired 2026-09-27",
+      "facts": [
+        "certificate",
+        "expired"
+      ],
+      "evidence": [
+        "log/2026/2026-09-28.md",
+        "log/2026/2026-09-27.md",
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "ht-07",
+      "category": "temporal",
+      "question": "Which Node version did Lighthouse build on before 2026-09-19?",
+      "query": "Lighthouse build Node 22 Vite 7",
+      "facts": [
+        "Node 22"
+      ],
+      "evidence": [
+        "log/2026/2026-09-19.md",
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "ht-08",
+      "category": "temporal",
+      "question": "Which incident happened the day before the first restore drill?",
+      "query": "INC-0042 2026-09-29 restore drill",
+      "facts": [
+        "INC-0042",
+        "Harbor"
+      ],
+      "evidence": [
+        "log/2026/2026-09-29.md",
+        "log/2026/2026-09-30.md",
+        "pages/on-call.md"
+      ]
+    },
+    {
+      "id": "ht-09",
+      "category": "temporal",
+      "question": "On 2026-09-22, what did I do after meeting Priya?",
+      "query": "2026-09-22 PagerDuty schedule",
+      "facts": [
+        "PagerDuty",
+        "Payments primary"
+      ],
+      "evidence": [
+        "log/2026/2026-09-22.md"
+      ]
+    },
+    {
+      "id": "ht-10",
+      "category": "temporal",
+      "question": "During INC-0042, how long after the Harbor sync stalled did the fix go out?",
+      "query": "INC-0042 Harbor sync stalled deployed",
+      "facts": [
+        "09:05",
+        "11:30"
+      ],
+      "evidence": [
+        "log/2026/2026-09-29.md"
+      ]
+    },
+    {
+      "id": "ht-11",
+      "category": "temporal",
+      "question": "Will Dana be back from leave before I fly to Lisbon?",
+      "query": "Dana leave Lisbon outbound 2026-10-14",
+      "facts": [
+        "2026-10-10",
+        "2026-10-14"
+      ],
+      "evidence": [
+        "pages/dana-okafor.md",
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ]
+    },
+    {
+      "id": "ha-01",
+      "category": "abstention",
+      "question": "Which seat am I in on the flight to Lisbon?",
+      "query": "Lisbon flight TP 1234",
+      "facts": [],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-02",
+      "category": "abstention",
+      "question": "What time does my flight to Lisbon take off on 2026-10-14?",
+      "query": "TP 1234 2026-10-14 outbound",
+      "facts": [],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-03",
+      "category": "abstention",
+      "question": "Which disk model was in bay 3 before it was replaced?",
+      "query": "bay 3 disk replaced SMART",
+      "facts": [],
+      "evidence": [
+        "log/2026/2026-09-21.md",
+        "pages/home-lab.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-04",
+      "category": "abstention",
+      "question": "How much does Lighthouse cost a month on Fly.io?",
+      "query": "Lighthouse Fly.io monthly cost",
+      "facts": [],
+      "evidence": [
+        "log/2026/2026-10-01.md",
+        "pages/lighthouse.md",
+        "log/2026/2026-09-24.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-05",
+      "category": "abstention",
+      "question": "When does Priya's leave start?",
+      "query": "Priya leave",
+      "facts": [],
+      "evidence": [
+        "pages/priya-shah.md",
+        "pages/dana-okafor.md",
+        "log/2026/2026-09-22.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-06",
+      "category": "abstention",
+      "question": "How long was Harbor down during its move to the Ledgerline v3 API?",
+      "query": "Harbor Ledgerline v3 downtime",
+      "facts": [],
+      "evidence": [
+        "log/2026/2026-10-02.md",
+        "pages/ledgerline-erp.md",
+        "pages/postgres-upgrade.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-07",
+      "category": "abstention",
+      "question": "What incident number was the Harbor staging certificate outage?",
+      "query": "Harbor staging certificate incident",
+      "facts": [],
+      "evidence": [
+        "log/2026/2026-09-28.md",
+        "pages/on-call.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "ha-08",
+      "category": "abstention",
+      "question": "Which room is my EuroData talk in?",
+      "query": "EuroData talk",
+      "facts": [],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ],
+      "abstain": true
+    },
+    {
+      "id": "rt-01",
+      "category": "routing",
+      "note": {
+        "title": "Storage box cooling fan swapped",
+        "body": "The file server started grinding loudly, so I fitted a Noctua replacement fan; temperatures are back to normal."
+      },
+      "evidence": [
+        "pages/home-lab.md"
+      ],
+      "absent": [
+        "storage",
+        "cooling",
+        "fan",
+        "file",
+        "server",
+        "grinding",
+        "Noctua",
+        "temperatures"
+      ]
+    },
+    {
+      "id": "rt-02",
+      "category": "routing",
+      "note": {
+        "title": "Charges API owner wants code reviews requested in GitHub",
+        "body": "The engineer who owns the charges interface asked that pull requests touching her service be assigned to her in GitHub rather than sent as direct messages."
+      },
+      "evidence": [
+        "pages/dana-okafor.md"
+      ],
+      "absent": [
+        "charges",
+        "code",
+        "GitHub",
+        "interface",
+        "pull",
+        "requests",
+        "service",
+        "assigned",
+        "direct",
+        "messages"
+      ]
+    },
+    {
+      "id": "rt-03",
+      "category": "routing",
+      "note": {
+        "title": "Portugal conference: session room and insurance",
+        "body": "The organisers put my session in the main auditorium. Bought travel insurance for the whole week abroad."
+      },
+      "evidence": [
+        "pages/lisbon-trip.md"
+      ],
+      "absent": [
+        "Portugal",
+        "session",
+        "organisers",
+        "auditorium",
+        "insurance",
+        "abroad"
+      ]
+    },
+    {
+      "id": "rt-04",
+      "category": "routing",
+      "note": {
+        "title": "Follow-up to the database version bump",
+        "body": "After the major-version jump on the primary database box I ran ANALYZE so the planner statistics were fresh; query times are back to what they were."
+      },
+      "evidence": [
+        "pages/postgres-upgrade.md"
+      ],
+      "absent": [
+        "database",
+        "bump",
+        "major",
+        "jump",
+        "primary",
+        "ANALYZE",
+        "planner",
+        "statistics",
+        "query"
+      ]
+    },
+    {
+      "id": "rt-05",
+      "category": "routing",
+      "note": {
+        "title": "New dev machine checklist addition",
+        "body": "Add Windows Terminal and my PowerShell profile to the package manifest so a fresh computer gets them automatically."
+      },
+      "evidence": [
+        "pages/laptop-setup.md"
+      ],
+      "absent": [
+        "machine",
+        "checklist",
+        "Terminal",
+        "PowerShell",
+        "profile",
+        "manifest",
+        "fresh",
+        "computer",
+        "automatically"
+      ]
+    },
+    {
+      "id": "rt-06",
+      "category": "routing",
+      "note": {
+        "title": "Remote access to the workplace: peer key reissued",
+        "body": "The tunnel's peer key was reissued, so everyone has to re-download the client config before Monday."
+      },
+      "evidence": [
+        "pages/vpn-setup.md"
+      ],
+      "absent": [
+        "remote",
+        "access",
+        "workplace",
+        "peer",
+        "reissued",
+        "re-download",
+        "client",
+        "config",
+        "Monday"
+      ]
+    },
+    {
+      "id": "rt-07",
+      "category": "routing",
+      "note": {
+        "title": "Jump-box keypair rotated",
+        "body": "Generated a new keypair for the jump box and revoked the previous one from authorized_keys on the database server."
+      },
+      "evidence": [
+        "pages/ssh-keys.md"
+      ],
+      "absent": [
+        "jump",
+        "keypair",
+        "rotated",
+        "generated",
+        "revoked",
+        "previous",
+        "authorized_keys",
+        "database",
+        "server"
+      ]
+    },
+    {
+      "id": "rt-08",
+      "category": "routing",
+      "note": {
+        "title": "Emergency roster tweak",
+        "body": "Starting next month the weekly hand-off moves to Tuesday mornings at 09:00 Chicago time."
+      },
+      "evidence": [
+        "pages/on-call.md"
+      ],
+      "absent": [
+        "emergency",
+        "roster",
+        "tweak",
+        "hand-off",
+        "Tuesday",
+        "mornings",
+        "Chicago"
+      ]
+    },
+    {
+      "id": "rt-09",
+      "category": "routing",
+      "note": {
+        "title": "Uptime site gets a dark theme",
+        "body": "Shipped a dark theme for the outage history view on the public uptime site."
+      },
+      "evidence": [
+        "pages/lighthouse.md"
+      ],
+      "absent": [
+        "uptime",
+        "site",
+        "theme",
+        "shipped",
+        "outage",
+        "history",
+        "view"
+      ]
+    },
+    {
+      "id": "rt-10",
+      "category": "routing",
+      "note": {
+        "title": "Online shop catalogue photos behind a CDN",
+        "body": "Catalogue photos for the online shop are now resized at request time and delivered through a CDN."
+      },
+      "evidence": [
+        "pages/quayside.md"
+      ],
+      "absent": [
+        "online",
+        "catalogue",
+        "photos",
+        "CDN",
+        "resized",
+        "request",
+        "delivered"
+      ]
+    },
+    {
+      "id": "rt-11",
+      "category": "routing",
+      "note": {
+        "title": "Supplier rep on parental leave",
+        "body": "Our account manager at the stock-system supplier is out until January; Tomás Pereira stands in and answers at the same address."
+      },
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ],
+      "absent": [
+        "supplier",
+        "parental",
+        "leave",
+        "manager",
+        "stock",
+        "January",
+        "Pereira",
+        "stands"
+      ]
+    },
+    {
+      "id": "rt-12",
+      "category": "routing",
+      "note": {
+        "title": "Stock feed alerting",
+        "body": "The job that copies warehouse counts into the shop now raises an alert when a run takes longer than two minutes."
+      },
+      "evidence": [
+        "pages/harbor.md"
+      ],
+      "absent": [
+        "stock",
+        "feed",
+        "alerting",
+        "copies",
+        "counts",
+        "shop",
+        "raises",
+        "longer"
+      ]
+    }
+  ]
+}

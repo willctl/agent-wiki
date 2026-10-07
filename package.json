@@ -1,0 +1,38 @@
+{
+  "name": "agent-wiki",
+  "version": "1.8.0",
+  "private": true,
+  "description": "Shared plain-Markdown memory for Claude, ChatGPT and other AI apps, served over one local MCP server.",
+  "author": "willctl",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "icons": "node scripts/build-icons.mjs",
+    "test": "node scripts/build.mjs && node scripts/build-icons.mjs && node --test test/e2e.mjs test/installer.mjs test/curator.mjs test/tray.mjs test/ui.mjs test/ask.mjs test/migrate.mjs test/portable.mjs test/memory-eval.mjs",
+    "test:live": "node scripts/build.mjs && node --test test/live-curator.mjs",
+    "install-local": "node scripts/install-local.mjs",
+    "uninstall-local": "node scripts/install-local.mjs --uninstall",
+    "package": "node scripts/package.mjs",
+    "install-service": "node scripts/install-service.mjs",
+    "uninstall-service": "node scripts/uninstall-service.mjs",
+    "test:stress": "node scripts/build.mjs && node --test test/stress.mjs",
+    "ui:preview": "node scripts/build.mjs && node scripts/ui-preview.mjs",
+    "eval": "node scripts/build.mjs && node scripts/eval.mjs",
+    "bench": "node scripts/build.mjs && node scripts/bench.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "marked": "^18.0.14",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "smol-toml": "^1.9.0"
+  }
+}

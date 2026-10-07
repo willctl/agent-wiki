@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Wiki — shared memory for your AI apps</title>
+  <desc id="desc">Three app cards connect to a purple page of notes on a dark background.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101527"/><stop offset="1" stop-color="#070a12"/></linearGradient>
+    <linearGradient id="violet" x2="1" y2="1"><stop stop-color="#b8acff"/><stop offset="1" stop-color="#7060dd"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#7761dc" stop-opacity=".3"/><stop offset="1" stop-color="#7761dc" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#8d9cce" stroke-opacity=".05"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="908" cy="303" r="320" fill="url(#halo)"/>
+  <g font-family="Segoe UI, Inter, Arial, sans-serif">
+    <rect x="64" y="60" width="32" height="36" rx="8" fill="url(#violet)"/>
+    <path d="M72 70h14m-14 6h18m-18 6h11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <text x="108" y="86" fill="#e8eaf5" font-size="23" font-weight="600">Agent Wiki</text>
+    <text x="64" y="222" fill="#f2f1fa" font-size="62" font-weight="700" letter-spacing="-2">A little less</text>
+    <text x="64" y="294" fill="#c2b5ff" font-size="62" font-weight="700" letter-spacing="-2">starting over.</text>
+    <text x="67" y="355" fill="#b2bbd0" font-size="26">Shared memory for your AI apps.</text>
+    <text x="67" y="395" fill="#b2bbd0" font-size="26">Notes you can read, search, and keep.</text>
+    <rect x="66" y="476" width="334" height="48" rx="24" fill="#171d31" stroke="#343956"/>
+    <circle cx="90" cy="500" r="4" fill="#7ee0c8"/><text x="106" y="508" fill="#d2d8e9" font-size="19">github.com/willctl/agent-wiki</text>
+    <g fill="none" stroke="#7769c0" stroke-width="2"><path d="M818 174C925 174 932 276 969 293"/><path d="M790 316H915"/><path d="M835 463C925 463 913 360 969 350"/></g>
+    <circle cx="848" cy="177" r="5" fill="#b2a5ff"/><circle cx="865" cy="316" r="5" fill="#83dcca"/><circle cx="886" cy="441" r="5" fill="#b2a5ff"/>
+    <g fill="#171c2e" stroke="#3a405d"><rect x="676" y="137" width="156" height="70" rx="16"/><rect x="647" y="280" width="156" height="70" rx="16"/><rect x="688" y="428" width="156" height="70" rx="16"/></g>
+    <g fill="#e4e6f2" font-size="23" text-anchor="middle"><text x="754" y="181">Claude</text><text x="725" y="324">ChatGPT</text><text x="766" y="472">Codex</text></g>
+    <rect x="910" y="228" width="196" height="196" rx="36" fill="#29233f" stroke="#665a94"/>
+    <path d="M955 263h66l39 39v70q0 14-14 14h-77l-22 19v-28q-8-4-8-13v-85q0-16 16-16Z" fill="url(#violet)"/>
+    <path d="M1021 263v29q0 10 10 10h29" fill="#d4caff"/>
+    <path d="M960 312h40m-40 19h77m-77 19h57" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+    <text x="66" y="582" fill="#718099" font-size="16" letter-spacing="2">PLAIN MARKDOWN. YOUR NOTES.</text>
+  </g>
+</svg>

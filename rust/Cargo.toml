@@ -1,0 +1,31 @@
+[workspace]
+resolver = "3"
+members = ["crates/core", "crates/cli", "crates/tray"]
+
+[workspace.package]
+version = "1.8.0" # kept equal to package.json's version (scripts/build.mjs checks)
+edition = "2024"
+license = "UNLICENSED"
+publish = false
+
+[workspace.dependencies]
+aw-core = { path = "crates/core" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+regex = { version = "1", default-features = false, features = ["std", "perf", "unicode"] }
+fancy-regex = "0.19"
+sha2 = "0.11"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+getrandom = "0.4"
+unicode-normalization = "0.1"
+
+# Small and fast: optimized for size, one codegen unit, LTO, stripped symbols. Size matters for
+# speed here: on Windows each launch of a large program costs a scan (measured 2026-10-03: the
+# agent-wiki binary at opt-level 3, 4.3 MB, started in 56 ms; at "s", 3.4 MB, in 12 ms), and the
+# session hook starts it for every conversation. Calls run as fast at "s". Panics unwind, so a bug in
+# one request is caught and answered as an error instead of taking the server down.
+[profile.release]
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+strip = true

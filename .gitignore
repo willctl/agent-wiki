@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.log
+.tmp/
+.claude/*
+!.claude/skills/
+!.claude/launch.json
+eval/local/
+rust/target/
+.env
+.env.*
+*.pem
+*.pfx
+*.p12
+*.bundle
+
+/docs/showcase/frame-*.png

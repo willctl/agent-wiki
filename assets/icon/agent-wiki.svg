@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Agent Wiki: a dog-eared page with a speech-bubble tail (what the apps say becomes wiki
+       pages), drawn straight on the taskbar with no tile, for 20 px and up (agent-wiki-16.svg
+       is the pixel-fitted tray version). scripts/build-icons.mjs colors class="tile" (the page)
+       and class="accent" (the folded corner) per state, and shows class="badge" when the state
+       has one; class="knockout" erases a ring around the badge. -->
+  <defs>
+    <mask id="knockout">
+      <rect width="256" height="256" fill="#FFFFFF"/>
+      <circle class="knockout" cx="200" cy="200" r="64" fill="#000000"/>
+    </mask>
+  </defs>
+  <g class="glyph">
+    <path class="tile" fill="#4F46E5" d="M52 16 H164 L232 84 V168 C232 184 220 196 204 196 H116 L64 244 V196 H52 C36 196 24 184 24 168 V44 C24 28 36 16 52 16 Z"/>
+    <path class="accent" fill="#A5B4FC" d="M164 16 V64 C164 75 173 84 184 84 H232 Z"/>
+    <rect fill="#FFFFFF" x="60" y="68" width="76" height="22" rx="11"/>
+    <rect fill="#FFFFFF" x="60" y="118" width="136" height="22" rx="11"/>
+  </g>
+  <g class="badge" display="none">
+    <circle class="badge-dot" cx="200" cy="200" r="48" fill="#F59E0B"/>
+  </g>
+</svg>

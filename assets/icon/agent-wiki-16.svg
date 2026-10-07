@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+  <!-- Agent Wiki at 16 px (the tray at 100% scaling): the dog-eared page with a speech-bubble
+       tail, fitted to the pixel grid. Two 2 px text lines, a 4 px fold, a 3 px tail; the badge
+       sits in the bottom-right corner with a 1 px knocked-out ring. Same classes as
+       agent-wiki.svg; scripts/build-icons.mjs renders the states. -->
+  <defs>
+    <mask id="knockout">
+      <rect width="16" height="16" fill="#FFFFFF"/>
+      <circle class="knockout" cx="12.5" cy="12.5" r="4.5" fill="#000000"/>
+    </mask>
+  </defs>
+  <g class="glyph">
+    <path class="tile" fill="#4F46E5" d="M2 1 H10 L15 6 V11 Q15 12 14 12 H7 L4 15 V12 H2 Q1 12 1 11 V2 Q1 1 2 1 Z"/>
+    <path class="accent" fill="#A5B4FC" d="M10 1 V5 Q10 6 11 6 H15 Z"/>
+    <rect fill="#FFFFFF" x="3" y="4" width="5" height="2"/>
+    <rect fill="#FFFFFF" x="3" y="8" width="9" height="2"/>
+  </g>
+  <g class="badge" display="none">
+    <circle class="badge-dot" cx="12.5" cy="12.5" r="3.5" fill="#F59E0B"/>
+  </g>
+</svg>

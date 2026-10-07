@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ui-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/ui-preview.mjs"
+      ],
+      "port": 47899
+    },
+    {
+      "name": "ui-preview-rust",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/ui-preview.mjs",
+        "--rust",
+        "--port",
+        "47898"
+      ],
+      "port": 47898
+    }
+  ]
+}

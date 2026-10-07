@@ -1,0 +1,923 @@
+{
+  "about": "Questions over eval/synthetic/wiki. facts: strings a correct answer contains (case-insensitive; 'a|b' = either). evidence: the files that hold the answer. query: the words a good agent would search for. abstain: the wiki does not say (false premise or never recorded), so a correct answer says so.",
+  "questions": [
+    {
+      "id": "ex-01",
+      "category": "extraction",
+      "question": "What port does Harbor listen on?",
+      "query": "Harbor port",
+      "facts": [
+        "8443"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ex-02",
+      "category": "extraction",
+      "question": "Where are Harbor's secrets kept?",
+      "query": "Harbor secrets 1Password vault",
+      "facts": [
+        "1Password"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ex-03",
+      "category": "extraction",
+      "question": "What is the IP address of the NAS?",
+      "query": "NAS IP address",
+      "facts": [
+        "10.0.4.20"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ]
+    },
+    {
+      "id": "ex-04",
+      "category": "extraction",
+      "question": "Which time zone is Dana in?",
+      "query": "Dana time zone",
+      "facts": [
+        "Pacific"
+      ],
+      "evidence": [
+        "pages/dana-okafor.md"
+      ]
+    },
+    {
+      "id": "ex-05",
+      "category": "extraction",
+      "question": "What command connects me to the office VPN?",
+      "query": "VPN connect wg-quick",
+      "facts": [
+        "wg-quick up office"
+      ],
+      "evidence": [
+        "pages/vpn-setup.md"
+      ]
+    },
+    {
+      "id": "ex-06",
+      "category": "extraction",
+      "question": "When do the NAS backups run, and where do they go?",
+      "query": "backups nightly B2 bucket",
+      "facts": [
+        "02:00|2 am|2:00",
+        "sam-nas-backup"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ]
+    },
+    {
+      "id": "ex-07",
+      "category": "extraction",
+      "question": "Which port does the Lighthouse dev server use?",
+      "query": "Lighthouse dev server port",
+      "facts": [
+        "4173"
+      ],
+      "evidence": [
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "ex-08",
+      "category": "extraction",
+      "question": "What batch size does the Harbor sync use?",
+      "query": "Harbor batch size",
+      "facts": [
+        "500"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ex-09",
+      "category": "extraction",
+      "question": "Who covers billing questions while Dana is away?",
+      "query": "covers billing leave Priya",
+      "facts": [
+        "Priya"
+      ],
+      "evidence": [
+        "pages/dana-okafor.md"
+      ]
+    },
+    {
+      "id": "ex-10",
+      "category": "extraction",
+      "question": "What is the office DNS server?",
+      "query": "office DNS server",
+      "facts": [
+        "10.10.0.53"
+      ],
+      "evidence": [
+        "pages/vpn-setup.md"
+      ]
+    },
+    {
+      "id": "ex-11",
+      "category": "extraction",
+      "question": "What is the base URL of the ERP API that Harbor uses?",
+      "query": "Ledgerline API base URL",
+      "facts": [
+        "api.ledgerline.example.test/v3"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "ex-12",
+      "category": "extraction",
+      "question": "Who is my contact at the ERP vendor?",
+      "query": "Ledgerline vendor contact",
+      "facts": [
+        "Marta Ruiz"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "ex-13",
+      "category": "extraction",
+      "question": "Which port does the shop listen on when I run it on my machine?",
+      "query": "Quayside local dev port",
+      "facts": [
+        "3000"
+      ],
+      "evidence": [
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "ex-14",
+      "category": "extraction",
+      "question": "In which Fly.io region does the shop run?",
+      "query": "Quayside Fly.io region",
+      "facts": [
+        "ord"
+      ],
+      "evidence": [
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "ex-15",
+      "category": "extraction",
+      "question": "What time zone does Priya work in?",
+      "query": "Priya time zone",
+      "facts": [
+        "Kolkata|IST|India"
+      ],
+      "evidence": [
+        "pages/priya-shah.md"
+      ]
+    },
+    {
+      "id": "ex-16",
+      "category": "extraction",
+      "question": "Which SSH key does db-01 accept?",
+      "query": "db-01 SSH key bastion",
+      "facts": [
+        "bastion-2026"
+      ],
+      "evidence": [
+        "pages/ssh-keys.md"
+      ]
+    },
+    {
+      "id": "ex-17",
+      "category": "extraction",
+      "question": "What's my flight number to Portugal?",
+      "query": "Lisbon flight",
+      "facts": [
+        "TP 1234|TP1234"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "log/2026/2026-10-03.md"
+      ]
+    },
+    {
+      "id": "ex-18",
+      "category": "extraction",
+      "question": "Where are the storefront's product pictures stored?",
+      "query": "Quayside images R2 bucket",
+      "facts": [
+        "quayside-images"
+      ],
+      "evidence": [
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "ex-19",
+      "category": "extraction",
+      "question": "What error message did the Lighthouse build show on Node 22?",
+      "query": "Lighthouse build error Node 22 Vite 7",
+      "facts": [
+        "crypto.hash is not a function"
+      ],
+      "evidence": [
+        "log/2026/2026-09-19.md"
+      ]
+    },
+    {
+      "id": "ex-20",
+      "category": "extraction",
+      "question": "How much a month did moving the storefront off Heroku save?",
+      "query": "Quayside Fly.io cost Heroku",
+      "facts": [
+        "96",
+        "31"
+      ],
+      "evidence": [
+        "log/2026/2026-09-24.md"
+      ]
+    },
+    {
+      "id": "ex-21",
+      "category": "extraction",
+      "question": "Where are the Stripe test keys for the storefront's staging checkout?",
+      "query": "Quayside Stripe test keys",
+      "facts": [
+        "Quayside Stripe test"
+      ],
+      "evidence": [
+        "inbox/2026-10-03_15-22-10-118-a1b2c3.md"
+      ]
+    },
+    {
+      "id": "ex-22",
+      "category": "extraction",
+      "question": "What's the address of the storage box on my home network?",
+      "query": "NAS IP address",
+      "facts": [
+        "10.0.4.20"
+      ],
+      "evidence": [
+        "pages/home-lab.md"
+      ]
+    },
+    {
+      "id": "ex-23",
+      "category": "extraction",
+      "question": "What is the title of the talk I'm giving at the conference?",
+      "query": "EuroData talk title",
+      "facts": [
+        "Syncing inventory without tears"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md"
+      ]
+    },
+    {
+      "id": "ms-01",
+      "category": "multi-session",
+      "question": "Which Postgres version does Harbor's database run now, and on which host?",
+      "query": "Harbor Postgres db-01 version",
+      "facts": [
+        "16",
+        "db-01"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "pages/postgres-upgrade.md",
+        "log/2026/2026-09-27.md"
+      ]
+    },
+    {
+      "id": "ms-02",
+      "category": "multi-session",
+      "question": "Who owns the billing API that Harbor calls, and what is its rate limit?",
+      "query": "billing API rate limit",
+      "facts": [
+        "Dana",
+        "50"
+      ],
+      "evidence": [
+        "log/2026/2026-09-16.md"
+      ]
+    },
+    {
+      "id": "ms-03",
+      "category": "multi-session",
+      "question": "Why does Harbor use Postgres instead of SQLite, and when was that decided?",
+      "query": "Postgres SQLite decision",
+      "facts": [
+        "2026-09-02|September 2",
+        "two|concurrent|both"
+      ],
+      "evidence": [
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ms-04",
+      "category": "multi-session",
+      "question": "How long was the downtime for the Postgres 16 upgrade, and which snapshot was taken first?",
+      "query": "Postgres upgrade downtime snapshot",
+      "facts": [
+        "6 minutes|six minutes",
+        "db01@pre-pg16"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md",
+        "log/2026/2026-09-27.md"
+      ]
+    },
+    {
+      "id": "ms-05",
+      "category": "multi-session",
+      "question": "Which Harbor endpoint does Lighthouse check, and how often?",
+      "query": "Lighthouse checks healthz",
+      "facts": [
+        "/healthz",
+        "60 seconds|every minute|60 s"
+      ],
+      "evidence": [
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "ms-06",
+      "category": "multi-session",
+      "question": "Why did the Harbor sync stall on 2026-09-29, and what is the ERP's request limit?",
+      "query": "INC-0042 Harbor stall Ledgerline rate limit",
+      "facts": [
+        "120",
+        "429|back off|backoff|Retry-After"
+      ],
+      "evidence": [
+        "log/2026/2026-09-29.md",
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "ms-07",
+      "category": "multi-session",
+      "question": "Who covers my on-call week during the Lisbon trip, and how should I reach them for something that isn't urgent?",
+      "query": "on-call swap Lisbon Priya email",
+      "facts": [
+        "Priya",
+        "email"
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md",
+        "pages/priya-shah.md"
+      ]
+    },
+    {
+      "id": "ms-08",
+      "category": "multi-session",
+      "question": "What did the backup restore drill find, and what was done about it?",
+      "query": "restore drill photos task excluded",
+      "facts": [
+        "photos",
+        "re-enabled|reenabled|re-enable|turned back on"
+      ],
+      "evidence": [
+        "pages/restore-drill.md",
+        "log/2026/2026-09-30.md"
+      ]
+    },
+    {
+      "id": "ms-09",
+      "category": "multi-session",
+      "question": "Which of my projects run on Fly.io now?",
+      "query": "Fly.io",
+      "facts": [
+        "Quayside",
+        "Lighthouse"
+      ],
+      "evidence": [
+        "pages/quayside.md",
+        "pages/lighthouse.md",
+        "log/2026/2026-10-01.md"
+      ]
+    },
+    {
+      "id": "ms-10",
+      "category": "multi-session",
+      "question": "What changed in the data Harbor gets from Ledgerline with the v3 API, and when does v2 go away?",
+      "query": "Ledgerline v3 per bin v2 retired",
+      "facts": [
+        "bin",
+        "2026-12-31|December 31|end of the year"
+      ],
+      "evidence": [
+        "log/2026/2026-10-02.md",
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "tm-01",
+      "category": "temporal",
+      "question": "When was the NAS disk in bay 3 replaced?",
+      "query": "bay 3 disk replaced",
+      "facts": [
+        "2026-09-21|September 21"
+      ],
+      "evidence": [
+        "pages/home-lab.md",
+        "log/2026/2026-09-21.md"
+      ]
+    },
+    {
+      "id": "tm-02",
+      "category": "temporal",
+      "question": "What happened with Harbor staging on 2026-09-28?",
+      "query": "2026-09-28 Harbor staging certificate",
+      "facts": [
+        "certificate|cert",
+        "renew"
+      ],
+      "evidence": [
+        "log/2026/2026-09-28.md"
+      ]
+    },
+    {
+      "id": "tm-03",
+      "category": "temporal",
+      "question": "When did the NAS rebuild after the disk swap finish?",
+      "query": "SHR rebuild finished",
+      "facts": [
+        "2026-09-22|September 22",
+        "01:30|1:30"
+      ],
+      "evidence": [
+        "log/2026/2026-09-21.md"
+      ]
+    },
+    {
+      "id": "tm-04",
+      "category": "temporal",
+      "question": "When is Dana on leave?",
+      "query": "Dana leave",
+      "facts": [
+        "2026-10-06|October 6",
+        "2026-10-10|October 10"
+      ],
+      "evidence": [
+        "pages/dana-okafor.md"
+      ]
+    },
+    {
+      "id": "tm-05",
+      "category": "temporal",
+      "question": "When was the Postgres 16 upgrade decided, and when was it carried out?",
+      "query": "Postgres 16 upgrade decided",
+      "facts": [
+        "2026-09-20|September 20",
+        "2026-09-27|September 27"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "tm-06",
+      "category": "temporal",
+      "question": "What work was done on 2026-09-19?",
+      "query": "2026-09-19",
+      "facts": [
+        "Lighthouse",
+        "Node 24"
+      ],
+      "evidence": [
+        "log/2026/2026-09-19.md"
+      ]
+    },
+    {
+      "id": "tm-07",
+      "category": "temporal",
+      "question": "What changed for Lighthouse on October 1?",
+      "query": "Lighthouse 2026-10-01 Fly.io",
+      "facts": [
+        "Fly.io",
+        "Cloudflare"
+      ],
+      "evidence": [
+        "log/2026/2026-10-01.md",
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "tm-08",
+      "category": "temporal",
+      "question": "Which happened first: the backup restore drill or Harbor's move to the Ledgerline v3 API?",
+      "query": "restore drill date Ledgerline v3 date",
+      "facts": [
+        "2026-09-30|September 30",
+        "2026-10-02|October 2"
+      ],
+      "evidence": [
+        "pages/restore-drill.md",
+        "pages/ledgerline-erp.md"
+      ]
+    },
+    {
+      "id": "tm-09",
+      "category": "temporal",
+      "question": "How long did INC-0042 last?",
+      "query": "INC-0042 duration",
+      "facts": [
+        "40 minutes|forty minutes"
+      ],
+      "evidence": [
+        "log/2026/2026-09-29.md",
+        "pages/on-call.md"
+      ]
+    },
+    {
+      "id": "tm-10",
+      "category": "temporal",
+      "question": "When is the next backup restore drill?",
+      "query": "next restore drill",
+      "facts": [
+        "2026-12-15|December 15"
+      ],
+      "evidence": [
+        "pages/restore-drill.md"
+      ]
+    },
+    {
+      "id": "tm-11",
+      "category": "temporal",
+      "question": "What did I change on 2026-09-25?",
+      "query": "2026-09-25",
+      "facts": [
+        "fnm"
+      ],
+      "evidence": [
+        "log/2026/2026-09-25.md"
+      ]
+    },
+    {
+      "id": "tm-12",
+      "category": "temporal",
+      "question": "When is my talk in Lisbon?",
+      "query": "EuroData talk date",
+      "facts": [
+        "2026-10-16|October 16",
+        "14:00|2 pm|2:00 pm|2 p.m."
+      ],
+      "evidence": [
+        "pages/lisbon-trip.md"
+      ]
+    },
+    {
+      "id": "tm-13",
+      "category": "temporal",
+      "question": "How many days passed between deciding on the Postgres 16 upgrade and doing it?",
+      "query": "Postgres 16 upgrade decided done",
+      "facts": [
+        "7|seven"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "ku-01",
+      "category": "knowledge-update",
+      "question": "Where is the Harbor repo checked out?",
+      "query": "Harbor repo path",
+      "facts": [
+        "C:/Projects/harbor|C:\\Projects\\harbor"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "log/2026/2026-09-14.md"
+      ]
+    },
+    {
+      "id": "ku-02",
+      "category": "knowledge-update",
+      "question": "Which Node version does the Lighthouse build use?",
+      "query": "Lighthouse Node version build",
+      "facts": [
+        "24"
+      ],
+      "evidence": [
+        "pages/lighthouse.md",
+        "log/2026/2026-09-19.md"
+      ]
+    },
+    {
+      "id": "ku-03",
+      "category": "knowledge-update",
+      "question": "Which Postgres version did db-01 run before the upgrade?",
+      "query": "db-01 Postgres 15 before upgrade",
+      "facts": [
+        "15"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md",
+        "pages/harbor.md"
+      ]
+    },
+    {
+      "id": "ku-04",
+      "category": "knowledge-update",
+      "question": "Where was the Harbor repo before it moved?",
+      "query": "Harbor repo previously moved",
+      "facts": [
+        "C:/Dev/harbor|C:\\Dev\\harbor"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "log/2026/2026-09-14.md"
+      ]
+    },
+    {
+      "id": "ku-05",
+      "category": "knowledge-update",
+      "question": "Where is Lighthouse hosted?",
+      "query": "Lighthouse hosting production",
+      "facts": [
+        "Fly.io"
+      ],
+      "evidence": [
+        "pages/lighthouse.md",
+        "log/2026/2026-10-01.md"
+      ]
+    },
+    {
+      "id": "ku-06",
+      "category": "knowledge-update",
+      "question": "Where was Lighthouse hosted before its current host?",
+      "query": "Lighthouse previously hosted",
+      "facts": [
+        "Cloudflare Pages"
+      ],
+      "evidence": [
+        "pages/lighthouse.md",
+        "log/2026/2026-10-01.md"
+      ]
+    },
+    {
+      "id": "ku-07",
+      "category": "knowledge-update",
+      "question": "Which version of the Ledgerline API does Harbor call?",
+      "query": "Harbor Ledgerline API version",
+      "facts": [
+        "v3"
+      ],
+      "evidence": [
+        "pages/ledgerline-erp.md",
+        "pages/harbor.md",
+        "log/2026/2026-10-02.md"
+      ]
+    },
+    {
+      "id": "ku-08",
+      "category": "knowledge-update",
+      "question": "Which tool manages Node versions on my laptop?",
+      "query": "laptop Node version manager",
+      "facts": [
+        "fnm"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md",
+        "log/2026/2026-09-25.md"
+      ]
+    },
+    {
+      "id": "ku-09",
+      "category": "knowledge-update",
+      "question": "Where did the storefront run before Fly.io?",
+      "query": "Quayside before Fly.io Heroku",
+      "facts": [
+        "Heroku"
+      ],
+      "evidence": [
+        "pages/quayside.md",
+        "log/2026/2026-09-24.md"
+      ]
+    },
+    {
+      "id": "ku-10",
+      "category": "knowledge-update",
+      "question": "Which web framework does the storefront use now?",
+      "query": "Quayside framework",
+      "facts": [
+        "React Router"
+      ],
+      "evidence": [
+        "pages/quayside.md"
+      ]
+    },
+    {
+      "id": "ab-01",
+      "category": "abstention",
+      "question": "What is Dana's phone number?",
+      "query": "Dana phone number",
+      "abstain": true
+    },
+    {
+      "id": "ab-02",
+      "category": "abstention",
+      "question": "Which Kubernetes cluster runs Harbor?",
+      "query": "Harbor Kubernetes cluster",
+      "abstain": true
+    },
+    {
+      "id": "ab-03",
+      "category": "abstention",
+      "question": "What is the admin password for the NAS?",
+      "query": "NAS admin password",
+      "abstain": true
+    },
+    {
+      "id": "ab-04",
+      "category": "abstention",
+      "question": "When was Lighthouse migrated to Next.js?",
+      "query": "Lighthouse Next.js migration",
+      "abstain": true
+    },
+    {
+      "id": "ab-05",
+      "category": "abstention",
+      "question": "What is the Backblaze B2 application key for the backups?",
+      "query": "B2 application key",
+      "abstain": true
+    },
+    {
+      "id": "ab-06",
+      "category": "abstention",
+      "question": "When did I move the storefront to Heroku?",
+      "query": "Quayside Heroku move",
+      "abstain": true
+    },
+    {
+      "id": "ab-07",
+      "category": "abstention",
+      "question": "What is Priya's phone number?",
+      "query": "Priya phone number",
+      "abstain": true
+    },
+    {
+      "id": "ab-08",
+      "category": "abstention",
+      "question": "Which port does the NAS web interface use?",
+      "query": "NAS web interface port",
+      "abstain": true
+    },
+    {
+      "id": "ab-09",
+      "category": "abstention",
+      "question": "What is the Ledgerline production client secret?",
+      "query": "Ledgerline client secret",
+      "abstain": true
+    },
+    {
+      "id": "ab-10",
+      "category": "abstention",
+      "question": "When did I move Harbor's database to Amazon Aurora?",
+      "query": "Harbor database Aurora",
+      "abstain": true
+    },
+    {
+      "id": "ab-11",
+      "category": "abstention",
+      "question": "Which hotel did I book in Porto?",
+      "query": "Porto hotel",
+      "abstain": true
+    },
+    {
+      "id": "pr-01",
+      "category": "procedural",
+      "question": "How should my commit messages be written?",
+      "query": "commit messages",
+      "facts": [
+        "Conventional Commits"
+      ],
+      "evidence": [
+        "pages/working-preferences.md"
+      ]
+    },
+    {
+      "id": "pr-02",
+      "category": "procedural",
+      "question": "What should an assistant do before deleting files?",
+      "query": "before deleting files",
+      "facts": [
+        "ask"
+      ],
+      "evidence": [
+        "pages/working-preferences.md"
+      ]
+    },
+    {
+      "id": "pr-03",
+      "category": "procedural",
+      "question": "How do I check that the office VPN is working?",
+      "query": "check VPN ping",
+      "facts": [
+        "ping db-01.office.lan"
+      ],
+      "evidence": [
+        "pages/vpn-setup.md"
+      ]
+    },
+    {
+      "id": "pr-04",
+      "category": "procedural",
+      "question": "What is still open for Lighthouse?",
+      "query": "Lighthouse open items",
+      "facts": [
+        "SSO",
+        "dark mode"
+      ],
+      "evidence": [
+        "pages/lighthouse.md"
+      ]
+    },
+    {
+      "id": "pr-05",
+      "category": "procedural",
+      "question": "What is the rollback plan if the Postgres upgrade goes wrong?",
+      "query": "Postgres upgrade rollback",
+      "facts": [
+        "snapshot"
+      ],
+      "evidence": [
+        "pages/postgres-upgrade.md"
+      ]
+    },
+    {
+      "id": "pr-06",
+      "category": "procedural",
+      "question": "If nobody acknowledges a page, who gets it next and after how long?",
+      "query": "escalate unacknowledged page",
+      "facts": [
+        "15 minutes|fifteen minutes",
+        "Dana"
+      ],
+      "evidence": [
+        "pages/on-call.md"
+      ]
+    },
+    {
+      "id": "pr-07",
+      "category": "procedural",
+      "question": "How do I install Python on a new laptop?",
+      "query": "laptop Python uv",
+      "facts": [
+        "uv"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md"
+      ]
+    },
+    {
+      "id": "pr-08",
+      "category": "procedural",
+      "question": "What should I do first when I get paged?",
+      "query": "paged acknowledge PagerDuty",
+      "facts": [
+        "acknowledge",
+        "5 minutes|five minutes"
+      ],
+      "evidence": [
+        "pages/on-call.md"
+      ]
+    },
+    {
+      "id": "pr-09",
+      "category": "procedural",
+      "question": "How do I install all my apps on a fresh Windows machine?",
+      "query": "winget import apps laptop",
+      "facts": [
+        "winget import"
+      ],
+      "evidence": [
+        "pages/laptop-setup.md"
+      ]
+    },
+    {
+      "id": "pr-10",
+      "category": "procedural",
+      "question": "How should the Harbor sync react when Ledgerline says it is getting too many requests?",
+      "query": "Harbor Ledgerline 429 backoff",
+      "facts": [
+        "Retry-After",
+        "5 retries|five retries|at most 5"
+      ],
+      "evidence": [
+        "pages/harbor.md",
+        "log/2026/2026-09-29.md"
+      ]
+    }
+  ]
+}
